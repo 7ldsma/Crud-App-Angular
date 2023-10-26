@@ -1,19 +1,14 @@
 var userModel = require('./userModel');
 
-module.exports.getDataFromDBService = () => {
+module.exports.getDataFromDBService = async () => {
 
-    return new Promise(function checkURL(resolve, reject){
-
-        userModel.find({}, function returnData(error, result){
-
-            if(error) {
-                reject(false);
-            } else {
-                resolve(result);
-            }
-        });
-    });
-
+    try{
+        const result = await userModel.find({});
+        return result;
+    } catch (error){
+        return false;
+    }
+  
 }
 
 
@@ -38,32 +33,25 @@ module.exports.createUserDBService = async (userDetails) => {
 }
 
 
-module.exports.updateUserDBService = (id, userDetails) => {
+module.exports.updateUserDBService = async (id, userDetails) => {
 
-    return new Promise(function myFn(resolve, reject) {
-        userModel.findByIdAndUpdate(id, userDetails, function returnData(error, result){
-
-            if(error){
-                reject(false);
-            } else {
-                resolve(result);
-            }
-        });
-    });
+    try{
+        const result = await userModel.findByIdAndUpdate(id, userDetails);
+        return true;
+    } catch(error) {
+        return false;
+    }
 
 }
 
 
-module.exports.removeUserDBService = (id) => {
-    return new Promise(function myFn(resolve, reject) {
-        userModel.findOneAndDelete(id, function returnData(error, result){
+module.exports.removeUserDBService = async (id) => {
 
-            if(error){
-                reject(false);
-            } else {
-                resolve(result);
-            }
+    try{
+        const result = await userModel.findOneAndDelete(id);
+        return true;
+    } catch(error){
+        return false;
+    }
 
-        });
-    });
 }
