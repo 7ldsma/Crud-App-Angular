@@ -19,6 +19,7 @@ module.exports.createUserDBService = async (userDetails) => {
             var userModelData = new userModel();
     
             userModelData.name = userDetails.name;
+            userModelData.lastname = userDetails.lastname;
             userModelData.email = userDetails.email;
             userModelData.password = userDetails.password;
     
