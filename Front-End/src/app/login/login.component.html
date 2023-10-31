@@ -1,0 +1,86 @@
+<section>
+
+    <div class="row header justify-content-center align-items-end pb-4">
+    </div>
+  
+    <div class="row pt-4 mt-4">
+  
+      <div class="vwrap col-8 col-md-6 order-last order-md-first text-center">
+        <div class="vmove">
+          <div class="vslide row justify-content-center">
+            <div class="col col-md-10 col-xl-7 text-start">
+              <h1 class="display-1">This Website is built in Angular</h1>
+              <p>And it is fueled by dynamic API data from https://swapi.py4e.com/</p>
+              <p>Register, login and explore starships, characters, and Star Wars films in an immersive, interactive experience.</p>
+            </div>
+          </div>
+          <div class="vslide row justify-content-center">
+            <div class="col col-md-10 col-xl-7 text-start">
+              <h1 class="display-1">It uses JSON-Server</h1>
+              <p>to simulate a RESTful API using a JSON file as the data source.</p>
+              <p>As a Front-End Developer, using JSON-Server comes very handy to create mock APIs</p>
+  
+            </div>
+            
+          </div>
+          <div class="vslide row justify-content-center">
+            <div class="col col-md-10 col-xl-7 text-start">
+              
+              <h1 class="display-1">Some of its Key Features:</h1>
+              <ul class="text-start">
+                <li>User Login and Registration</li>
+                <li>Routes protection</li>
+                <li>Use of Observables for API consumption</li>
+                <li>Infinite scroll</li>
+              </ul>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-8 col-md-6">
+        
+          <!-- <div class="d-grid col-10 col-sm-8 col-md-6 col-xl-12 text-center"> -->
+                
+              <form class="mb-3 col col-md-8 col-xl-7" [formGroup]="loginForm" (ngSubmit)="login()">
+                
+                  <div class="form-floating">
+                        <input type="email" class="form-control" formControlName="email" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Email address</label>
+                  </div>
+    
+                  <div *ngIf="this.emailField && this.emailField.errors && this.emailField.touched" class="text-start">
+                        <small class="text-warning errormsg" *ngIf="this.emailField.hasError('required')">
+                            An email is required to login.
+                        </small>
+                  </div>    
+    
+                  <div class="form-floating mt-3">
+                        <input type="password" class="form-control" formControlName="password" id="floatingPassword" placeholder="Password">
+                        <label for="floatingPassword">Password</label>
+                  </div>
+    
+                  <div *ngIf="this.passwordField && this.passwordField.errors && this.passwordField.touched" class="text-start">
+                        <small class="text-warning" *ngIf="this.passwordField.hasError('required')">
+                            A password is required.
+                          </small>
+                  </div>
+                        
+                  <div class="d-grid col-12 text-center mx-auto mt-3">
+                          <button type="submit" [disabled]="!loginForm.valid" class="btn btn-lg btn-secondary p-3">Login</button>
+                  </div>
+                  <div class="mt-2">
+                          <span class="text-secondary">Not a member yet? </span><a class="text-light" routerLink="/register">Register here</a>
+                  </div>
+                        
+              </form>                    
+                      
+          <!-- </div>           -->
+                    
+      </div>
+  
+    </div>
+  
+                
+  </section>
