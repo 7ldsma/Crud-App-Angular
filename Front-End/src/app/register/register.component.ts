@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit{
   }
 
   signUp(){
-    console.log("hola");
+
     this.http.post<any>("http://localhost:4000/user/create", this.registerForm.value)
     .subscribe({
       next: res => {

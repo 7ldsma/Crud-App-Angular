@@ -33,25 +33,36 @@ export class LoginComponent implements OnInit{
 
  
   login(){
-    this.http.get<any>("http://localhost:3000/signupUsers" )
-    .subscribe(res => {
-      const user = res.find((a:any) => {
-        return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password
-      });
-      if(user) {
-        alert("Login successfull");
-        sessionStorage.setItem('email', user.email);
-        this.loginForm.reset();
-        this.router.navigate(['home'])
-      } else {
-        alert("User not found");
-      }
 
-    }, err => {
-      alert("Invalid credentials. Please verify your login information")
-    })
+    // this.http.get<any>("http://localhost:4000/user/getAll")
+    // .subscribe(res => {
 
-  }
+    //   console.log(res)
+    // })
+
+
+
+    this.http.get<any>("http://localhost:4000/user/getAll")
+    .subscribe((res: any) => {
+          const user = res.data.find((a:any) => {
+            return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password
+          });
+  
+          if(user) {
+            alert("Login successfull");
+            sessionStorage.setItem('email', user.email);
+            this.loginForm.reset();
+            this.router.navigate(['dashboard'])
+          } else {
+            alert("User not found");
+          }
+          
+      }, err => {
+        console.log(err)
+        alert("Invalid credentials. Please verify your login information")
+      })
+    }
+
 
 // logInForm = this.FormBuilder.group({
 

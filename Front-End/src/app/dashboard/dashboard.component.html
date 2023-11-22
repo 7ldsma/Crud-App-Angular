@@ -15,33 +15,33 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let item of items; let i = index">
-                            <td *ngIf="!item.editing">{{ item.name }}</td>
-                            <td *ngIf="!item.editing">{{ item.lastname }}</td>
-                            <td *ngIf="!item.editing">{{ item.email }}</td>
-                            <td *ngIf="!item.editing">{{ item.phone }}</td>
-                            <td *ngIf="!item.editing">{{ item.address }}</td>
-                            <td *ngIf="!item.editing">
-                                <a class="edit" title="Edit" (click)="editItem(i)" data-toggle="tooltip"><i class="material-icons text-secondary">edit</i></a>
-                                <a class="delete" title="Delete" (click)="deleteItem(i)" data-toggle="tooltip"><i class="material-icons text-secondary">delete</i></a>
+                          <tr *ngFor="let user of users; let i = index">
+                            <td *ngIf="!user.editing">{{ user.name }}</td>
+                            <td *ngIf="!user.editing">{{ user.lastname }}</td>
+                            <td *ngIf="!user.editing">{{ user.email }}</td>
+                            <td *ngIf="!user.editing">{{ user.phone }}</td>
+                            <td *ngIf="!user.editing">{{ user.address }}</td>
+                            <td *ngIf="!user.editing">
+                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons text-secondary">edit</i></a>
+                                <a class="delete" title="Delete" (click)="deleteUser(i)" data-toggle="tooltip"><i class="material-icons text-secondary">delete</i></a>
                             </td>
-                            <td *ngIf="item.editing">
-                                <input type="text" [(ngModel)]="item.name">
+                            <td *ngIf="user.editing">
+                                <input type="text" [(ngModel)]="user.name">
                             </td>
-                            <td *ngIf="item.editing">
-                                <input type="text" [(ngModel)]="item.lastname">
+                            <td *ngIf="user.editing">
+                                <input type="text" [(ngModel)]="user.lastname">
                             </td>
-                            <td *ngIf="item.editing">
-                                <input type="text" [(ngModel)]="item.email">
+                            <td *ngIf="user.editing">
+                                <input type="text" [(ngModel)]="user.email">
                             </td>
-                            <td *ngIf="item.editing">
-                                <input type="text" [(ngModel)]="item.phone">
+                            <td *ngIf="user.editing">
+                                <input type="text" [(ngModel)]="user.phone">
                             </td>
-                            <td *ngIf="item.editing">
-                                <input type="text" [(ngModel)]="item.address">
+                            <td *ngIf="user.editing">
+                                <input type="text" [(ngModel)]="user.address">
                             </td>
-                            <td *ngIf="item.editing">
-                                <a (click)="saveItem(i)"><i class="material-icons text-success">docs_add_on</i></a>
+                            <td *ngIf="user.editing">
+                                <a (click)="saveUser(i)"><i class="material-icons text-success">docs_add_on</i></a>
                             </td>
                         </tr>
                         </tbody>
@@ -51,7 +51,7 @@
             <div class="row justify-content-center">
                
                 <div class="col-10">
-                    <button type="button" class="btn btn-secondary add-new" (click)="addItem()"><i class="fa fa-plus"></i> Add New</button>
+                    <button type="button" class="btn btn-secondary add-new" (click)="addUser()"><i class="fa fa-plus"></i> Add New</button>
                 </div>
             </div>
 

@@ -1,31 +1,47 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { User } from '../interfaces/user.interface';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit{
 
-  items = [
-    { name: 'alvaro', lastname: 'Lesd', email: 'alv@gmail.com', phone: '555-555-5555', address: 'C.Roger 23', editing: false },
-    { name: 'Juan', lastname: 'Ole', email: 'jo@gmail.com', phone: '555-555-5555', address: 'C.Roger 56', editing: false },
-  ];
+  usersList: any;
+  users: User[] = [];
 
-  editItem(index: number) {
-    this.items[index].editing = true;
+  constructor(private userService: UserService) {}
+
+
+  ngOnInit(): void {
+    
+    this.userService.getUsers()
+    .subscribe(response => {
+      this.usersList = response;
+      this.users = this.usersList.data;
+      console.log(this.users[1].id)
+    })
+
   }
 
-  saveItem(index: number) {
-    this.items[index].editing = false;
+
+  editUser(id: string, index: number) {
+    this.userService.editUser(id)
+    this.users[index].editing = true;
   }
 
-  deleteItem(index: number) {
-    this.items.splice(index, 1);
+  saveUser(index: number) {
+    this.users[index].editing = false;
   }
 
-  addItem() {
-    this.items.push({ name: '', lastname: '', email: '', phone: '', address: '', editing: true });
+  deleteUser(index: number) {
+    this.users.splice(index, 1);
+  }
+
+  addUser() {
+    this.users.push({ name: '', lastname: '', email: '', phone: '', address: '', editing: true });
   }
 
   
